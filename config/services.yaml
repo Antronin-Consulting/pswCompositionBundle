@@ -1,0 +1,22 @@
+#
+# File: \config\services.yaml
+# Author: Peter Nagy <peter@antronin.consulting>
+# -----
+# Copyright (c) 2023-2026 Antronin Consulting Ltd.
+# ----------	---	---------------------------------------------------------
+#
+services:
+    Antronin\PswComposition\Validator\Constraints\PswComposition:
+        arguments:
+            $minLength: '%psw_composition.length.min%'
+            $maxLength: '%psw_composition.length.max%'
+            $lowercasePattern: '%psw_composition.contents.lowercase.pattern%'
+            $minLowercase: '%psw_composition.contents.lowercase.min%'
+            $uppercasePattern: '%psw_composition.contents.uppercase.pattern%'
+            $minUppercase: '%psw_composition.contents.uppercase.min%'
+            $numberPattern: '%psw_composition.contents.number.pattern%'
+            $minNumber: '%psw_composition.contents.number.min%'
+            $specialsPattern: '%psw_composition.contents.special.pattern%'
+            $minSpecial: '%psw_composition.contents.special.min%'
+        tags:
+            - { name: 'validator.constraint_validator' }

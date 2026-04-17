@@ -2,24 +2,16 @@
 
 declare(strict_types=1);
 /**
- * File: \src\Config\NexonConfig.php
+ * File: \src\Config\definition.php
  * Author: Peter Nagy <peter@antronin.consulting>
  * -----
  */
 
-namespace Antronin\PswCompositionBundle\Config;
+use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
-use Symfony\Component\Config\Definition\ConfigurationInterface;
-
-class AntroninPswCompositionBundleConfiguration implements ConfigurationInterface
-{
-    public function getConfigTreeBuilder(): TreeBuilder
-    {
-        $treeBuilder = new TreeBuilder('psw_composition');
-
-        $rootNode = $treeBuilder->getRootNode();
-        $rootNode->children()
+return static function (DefinitionConfigurator $definition): void {
+    $definition->rootNode()
+        ->children()
             ->arrayNode('length')
                 ->canBeEnabled()
                 ->children()
@@ -97,6 +89,4 @@ class AntroninPswCompositionBundleConfiguration implements ConfigurationInterfac
                 ->end()
             ->end()
         ->end();
-        return $treeBuilder;
-    }
-}
+};
