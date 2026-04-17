@@ -17,16 +17,16 @@ use Antronin\PswCompositionBundle\Validator\Constraints\MinRegex;
 class PasswordComposition extends Compound
 {
     public function __construct(
-        public ?int $minLength,
-        public ?int $maxLength,
-        public ?int $minLowercase,
-        public ?int $minUppercase,
-        public ?int $minNumber,
-        public ?int $minSpecial,
-        public ?string $lowercasePattern,
-        public ?string $uppercasePattern,
-        public ?string $numberPattern,
-        public ?string $specialsPattern,
+        public ?int $minLength = null,
+        public ?int $maxLength = null,
+        public ?int $minLowercase = null,
+        public ?int $minUppercase = null,
+        public ?int $minNumber = null,
+        public ?int $minSpecial = null,
+        public ?string $lowercasePattern = null,
+        public ?string $uppercasePattern = null,
+        public ?string $numberPattern = null,
+        public ?string $specialsPattern = null,
     ) {
         parent::__construct();
     }
