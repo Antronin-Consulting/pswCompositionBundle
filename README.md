@@ -36,6 +36,6 @@ in the `config/bundles.php` file of your project:
 
 return [
     // ...
-    Antronin\PswCompositionBundle\AntroninPswCompositionBundle::class => ['all' => true],
+    Antronin\PswCompositionBundle\AntroninConsultingPswCompositionBundle::class => ['all' => true],
 ];
 ```

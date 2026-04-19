@@ -7,7 +7,8 @@
         "symfony/http-kernel": "^8.0.8",
         "symfony/config": "^8.0.8",
         "symfony/dependency-injection": "^8.0.8",
-        "symfony/validator": "^8.0"
+        "symfony/validator": "^8.0",
+        "symfony/flex": "^2.10"
     },
     "license": "GPL-3.0-or-later",
     "autoload": {
@@ -31,6 +32,15 @@
         "friendsofphp/php-cs-fixer": "^3.95.1",
         "phpunit/phpunit": "^13.1.6",
         "phpstan/phpstan": "^2.1.50",
-        "squizlabs/php_codesniffer": "^4.0.1"
+        "squizlabs/php_codesniffer": "^4.0.1",
+        "symfony/runtime": "^8.0",
+        "symfony/dotenv": "^8.0",
+        "php-cs-fixer/shim": "^3.9"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true
+        }
     }
 }

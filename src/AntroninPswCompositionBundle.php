@@ -21,6 +21,10 @@ class AntroninPswCompositionBundle extends AbstractBundle
         $definition->import('../config/psw_composition.yaml');
     }
 
+    /**
+     * @param array<string, mixed> $config
+     * @param ContainerConfigurator $container
+     */
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $container->services()
