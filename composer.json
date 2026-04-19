@@ -1,5 +1,5 @@
 {
-    "name": "antronin/psw-composition-bundle",
+    "name": "antronin-consulting/psw-composition-bundle",
     "description": "The bundle provide backend validators and frontend building block to validate the quality of a password and display the result on the UI.",
     "type": "symfony-bundle",
     "require": {
