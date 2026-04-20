@@ -2,13 +2,17 @@
     "name": "antronin-consulting/psw-composition-bundle",
     "description": "The bundle provide backend validators and frontend building block to validate the quality of a password and display the result on the UI.",
     "type": "symfony-bundle",
+    "keywords": [
+        "symfony-ux"
+    ],
     "require": {
         "php": "^8.4",
         "symfony/http-kernel": "^8.0.8",
         "symfony/config": "^8.0.8",
         "symfony/dependency-injection": "^8.0.8",
         "symfony/validator": "^8.0",
-        "symfony/flex": "^2.10"
+        "symfony/flex": "^2.10",
+        "symfony/stimulus-bundle": "^3.0"
     },
     "license": "GPL-3.0-or-later",
     "autoload": {
