@@ -6,7 +6,8 @@
 # ----------	---	---------------------------------------------------------
 #
 services:
-    Antronin\PswComposition\Validator\Constraints\PswComposition:
+    antronin.psw_composition:
+        class: Antronin\PswCompositionBundle\Validator\Constraints\PasswordComposition
         arguments:
             $minLength: '%psw_composition.length.min%'
             $maxLength: '%psw_composition.length.max%'
