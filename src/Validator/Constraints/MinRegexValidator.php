@@ -5,6 +5,7 @@
  * Author: Peter Nagy <peter@antronin.consulting>
  * -----
  */
+
 declare(strict_types=1);
 
 namespace Antronin\PswCompositionBundle\Validator\Constraints;
@@ -36,13 +37,11 @@ class MinRegexValidator extends RegexValidator
             $value = ($constraint->normalizer)($value);
         }
 
-        $expectedResult = $constraint->match ? 1 : 0;
-
-        if (preg_match($constraint->pattern, $value) !== $expectedResult) {
+        if (preg_match_all($constraint->pattern, $value) < $constraint->min) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ value }}', $this->formatValue($value))
                 ->setParameter('{{ pattern }}', $constraint->pattern)
-                ->setParameter('{{ min }}', $constraint->min ?? '0')
+                ->setParameter('{{ min }}', (string) $constraint->min)
                 ->setCode(MinRegex::MIN_REGEX_FAILED_ERROR)
                 ->addViolation();
         }

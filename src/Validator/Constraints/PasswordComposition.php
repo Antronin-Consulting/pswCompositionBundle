@@ -5,6 +5,7 @@
  * Author: Peter Nagy <peter@antronin.consulting>
  * -----
  */
+
 declare(strict_types=1);
 
 namespace Antronin\PswCompositionBundle\Validator\Constraints;
@@ -17,8 +18,13 @@ use Antronin\PswCompositionBundle\Validator\Constraints\MinRegex;
 class PasswordComposition extends Compound
 {
     public function __construct(
+        public bool $lengthEnabled = false,
         public ?int $minLength = null,
         public ?int $maxLength = null,
+        public bool $lowercaseEnabled = false,
+        public bool $uppercaseEnabled = false,
+        public bool $numberEnabled = false,
+        public bool $specialEnabled = false,
         public ?int $minLowercase = null,
         public ?int $minUppercase = null,
         public ?int $minNumber = null,
@@ -39,7 +45,7 @@ class PasswordComposition extends Compound
             new Assert\NotCompromisedPassword(),
         ];
 
-        if (isset($this->minLength) || isset($this->maxLength)) {
+        if ($this->lengthEnabled) {
             if (isset($this->minLength) && !isset($this->maxLength)) {
                 $constraints[] = new Assert\Length(min: $this->minLength);
             } elseif (!isset($this->minLength) && isset($this->maxLength)) {
@@ -48,28 +54,28 @@ class PasswordComposition extends Compound
                 $constraints[] = new Assert\Length(min: $this->minLength, max: $this->maxLength);
             }
         }
-        if (isset($this->minLowercase) && $this->minLowercase > 0) {
+        if ($this->lowercaseEnabled && isset($this->minLowercase) && $this->minLowercase > 0) {
             $constraints[] = new MinRegex(
                 pattern: '/[' . $this->lowercasePattern . ']{' . $this->minLowercase . ',}/u',
                 message: 'password.constraints.lowercase',
                 min: $this->minLowercase
             );
         }
-        if (isset($this->minUppercase) && $this->minUppercase > 0) {
+        if ($this->uppercaseEnabled && isset($this->minUppercase) && $this->minUppercase > 0) {
             $constraints[] = new MinRegex(
                 pattern: '/[' . $this->uppercasePattern . ']{' . $this->minUppercase . ',}/u',
                 message: 'password.constraints.uppercase',
                 min: $this->minUppercase
             );
         }
-        if (isset($this->minNumber) && $this->minNumber > 0) {
+        if ($this->numberEnabled && isset($this->minNumber) && $this->minNumber > 0) {
             $constraints[] = new MinRegex(
                 pattern: '/[' . $this->numberPattern . ']{' . $this->minNumber . ',}/u',
                 message: 'password.constraints.numbers',
                 min: $this->minNumber
             );
         }
-        if (isset($this->minSpecial) && $this->minSpecial > 0) {
+        if ($this->specialEnabled && isset($this->minSpecial) && $this->minSpecial > 0) {
             $constraints[] = new MinRegex(
                 pattern: '/[' . preg_quote($this->specialsPattern, '/') . ']{' . $this->minSpecial . ',}/u',
                 message: 'password.constraints.specials',

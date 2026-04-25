@@ -23,7 +23,7 @@ class PasswordCompositionTest extends TestCase
 
     public function testGetConstraintsWithLength(): void
     {
-        $constraint = new PasswordComposition(minLength: 8, maxLength: 64);
+        $constraint = new PasswordComposition(lengthEnabled: true, minLength: 8, maxLength: 64);
         $innerConstraints = $constraint->getNestedConstraints();
         $lengthConstraint = $this->findConstraint(Assert\Length::class, $innerConstraints);
 
@@ -34,7 +34,7 @@ class PasswordCompositionTest extends TestCase
 
     public function testGetConstraintsWithMinLengthOnly(): void
     {
-        $constraint = new PasswordComposition(minLength: 10);
+        $constraint = new PasswordComposition(lengthEnabled: true, minLength: 10);
         $innerConstraints = $constraint->getNestedConstraints();
         $lengthConstraint = $this->findConstraint(Assert\Length::class, $innerConstraints);
 
@@ -45,7 +45,7 @@ class PasswordCompositionTest extends TestCase
 
     public function testGetConstraintsWithMaxLengthOnly(): void
     {
-        $constraint = new PasswordComposition(maxLength: 128);
+        $constraint = new PasswordComposition(lengthEnabled: true, maxLength: 128);
         $innerConstraints = $constraint->getNestedConstraints();
         $lengthConstraint = $this->findConstraint(Assert\Length::class, $innerConstraints);
 
@@ -56,7 +56,7 @@ class PasswordCompositionTest extends TestCase
 
     public function testGetConstraintsWithMinLowercase(): void
     {
-        $constraint = new PasswordComposition(minLowercase: 2, lowercasePattern: 'a-z');
+        $constraint = new PasswordComposition(lowercaseEnabled: true, minLowercase: 2, lowercasePattern: 'a-z');
         $innerConstraints = $constraint->getNestedConstraints();
         $minRegex = $this->findConstraint(MinRegex::class, $innerConstraints);
 
@@ -66,14 +66,55 @@ class PasswordCompositionTest extends TestCase
         self::assertSame('password.constraints.lowercase', $minRegex->message);
     }
 
+    public function testGetConstraintsWithMinUppercase(): void
+    {
+        $constraint = new PasswordComposition(uppercaseEnabled: true, minUppercase: 2, uppercasePattern: 'A-Z');
+        $innerConstraints = $constraint->getNestedConstraints();
+        $minRegex = $this->findConstraint(MinRegex::class, $innerConstraints);
+
+        self::assertNotNull($minRegex);
+        self::assertSame('/[A-Z]{2,}/u', $minRegex->pattern);
+        self::assertSame(2, $minRegex->min);
+        self::assertSame('password.constraints.uppercase', $minRegex->message);
+    }
+
+    public function testGetConstraintsWithMinNumber(): void
+    {
+        $constraint = new PasswordComposition(numberEnabled: true, minNumber: 2, numberPattern: '0-9');
+        $innerConstraints = $constraint->getNestedConstraints();
+        $minRegex = $this->findConstraint(MinRegex::class, $innerConstraints);
+
+        self::assertNotNull($minRegex);
+        self::assertSame('/[0-9]{2,}/u', $minRegex->pattern);
+        self::assertSame(2, $minRegex->min);
+        self::assertSame('password.constraints.numbers', $minRegex->message);
+    }
+
+    public function testGetConstraintsWithMinSpecials(): void
+    {
+        $constraint = new PasswordComposition(specialEnabled: true, minSpecial: 2, specialsPattern: '!@#$%^&*()-+');
+        $innerConstraints = $constraint->getNestedConstraints();
+        $minRegex = $this->findConstraint(MinRegex::class, $innerConstraints);
+
+        self::assertNotNull($minRegex);
+        self::assertSame('/[\!@\#\$%\^&\*\(\)\-\+]{2,}/u', $minRegex->pattern);
+        self::assertSame(2, $minRegex->min);
+        self::assertSame('password.constraints.specials', $minRegex->message);
+    }
+
     public function testGetConstraintsWithAllOptions(): void
     {
         $constraint = new PasswordComposition(
+            lengthEnabled: true,
             minLength: 12,
             maxLength: 100,
+            lowercaseEnabled: true,
             minLowercase: 2,
+            uppercaseEnabled: true,
             minUppercase: 3,
+            numberEnabled: true,
             minNumber: 4,
+            specialEnabled: true,
             minSpecial: 1,
             lowercasePattern: 'a-z',
             uppercasePattern: 'A-Z',

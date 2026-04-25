@@ -6,18 +6,14 @@
 # ----------	---	---------------------------------------------------------
 #
 services:
-    antronin.psw_composition:
-        class: Antronin\PswCompositionBundle\Validator\Constraints\PasswordComposition
-        arguments:
-            $minLength: '%psw_composition.length.min%'
-            $maxLength: '%psw_composition.length.max%'
-            $lowercasePattern: '%psw_composition.contents.lowercase.pattern%'
-            $minLowercase: '%psw_composition.contents.lowercase.min%'
-            $uppercasePattern: '%psw_composition.contents.uppercase.pattern%'
-            $minUppercase: '%psw_composition.contents.uppercase.min%'
-            $numberPattern: '%psw_composition.contents.number.pattern%'
-            $minNumber: '%psw_composition.contents.number.min%'
-            $specialsPattern: '%psw_composition.contents.special.pattern%'
-            $minSpecial: '%psw_composition.contents.special.min%'
-        tags:
-            - { name: 'validator.constraint_validator' }
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Antronin\PswCompositionBundle\:
+        resource: '../src/'
+
+    antronin_psw_composition.validator.psw_composition:
+        class: Antronin\PswCompositionBundle\Validator\PswCompositionValidator
+        tags: [ 'validator.constraint_validator' ]

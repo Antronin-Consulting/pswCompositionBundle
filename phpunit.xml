@@ -3,22 +3,18 @@
   <coverage>
     <report>
       <clover outputFile="coverage.xml"/>
-      <text outputFile="php://stdout" showOnlySummary="true"/>
+      <text outputFile="php://stdout"/>
     </report>
   </coverage>
   <php>
     <ini name="error_reporting" value="-1"/>
-    <env name="KERNEL_CLASS" value="\Antronin\PswCompositionBundle\Tests\App\AppKernel"/>
+    <env name="KERNEL_CLASS" value="App\Kernel"/>
+    <server name="APP_ENV" value="test" force="true" />
     <ini name="display_errors" value="1"/>
     <ini name="display_startup_errors" value="1"/>
     <ini name="error_reporting" value="-1"/>
     <ini name="memory_limit" value="-1"/>
   </php>
-  <testsuites>
-    <testsuite name="Password Composition Test Case">
-      <directory>./tests</directory>
-    </testsuite>
-  </testsuites>
   <logging/>
   <source>
     <include>

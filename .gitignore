@@ -1,7 +1,17 @@
 vendor/
 bin/
 .phpunit.result.cache
-codecoverage.xml
+coverage.xml
+public/
+config/packages/
+config/routes/
+config/preload.php
+config/bundles.php
+config/routes.yaml
+src/Kernel.php
+.env
+.env.dev
+
 
 ###> phpstan/phpstan ###
 phpstan.neon
@@ -21,3 +31,13 @@ phpstan.neon
 /.php-cs-fixer.php
 /.php-cs-fixer.cache
 ###< php-cs-fixer/shim ###
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
