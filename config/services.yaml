@@ -11,9 +11,9 @@ services:
         autoconfigure: true
         public: false
 
-    Antronin\PswCompositionBundle\:
+    Antronin-Consulting\PswCompositionBundle\:
         resource: '../src/'
 
-    antronin_psw_composition.validator.psw_composition:
-        class: Antronin\PswCompositionBundle\Validator\PswCompositionValidator
+    antronin_consulting_psw_composition.validator.constraints.psw_composition:
+        class: Antronin-Consulting\PswCompositionBundle\Validator\PswComposition
         tags: [ 'validator.constraint_validator' ]
