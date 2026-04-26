@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="hu">
   <file id="psw_composition.en_US">
     <unit id="psw_composition.error" name="original-content">
       <notes>
@@ -9,31 +9,31 @@
       </notes>
       <segment state="final">
         <source>choose</source>
-        <target>Please choose a password that</target>
+        <target>Kérlek, olyan jelszót válassz, amely</target>
       </segment>
       <segment state="final">
         <source>max_length</source>
-        <target>up to {max} characters long</target>
+        <target>legfeljebb {max} karakter hosszú</target>
       </segment>
       <segment state="final">
         <source>min_length</source>
-        <target>at least {min} characters long</target>
+        <target>legalább {min} karakter hosszú</target>
       </segment>
       <segment state="final">
         <source>min_lowercase</source>
-        <target>contains at least {min} lowercase letters</target>
+        <target>tartalmaz legalább {min} kisbetűt</target>
       </segment>
       <segment state="final">
         <source>min_number</source>
-        <target>contains at least {min} numbers</target>
+        <target>tartalmaz legalább {min} számot</target>
       </segment>
       <segment state="final">
         <source>min_special</source>
-        <target>contains at least {min} special characters</target>
+        <target>tartalmaz legalább {min} speciális karaktert</target>
       </segment>
       <segment state="final">
         <source>min_uppercase</source>
-        <target>contains at least {min} uppercase letters</target>
+        <target>tartalmaz legalább {min} nagybetűt</target>
       </segment>
     </unit>
   </file>

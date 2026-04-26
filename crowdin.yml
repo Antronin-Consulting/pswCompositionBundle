@@ -1,0 +1,7 @@
+"base_path": "."
+"files": [
+  {
+    "source": "/translations/AntroninPswComposition.xlf",
+    "translation": "/translations/AntroninPswComposition.%two_letters_code%.xlf"
+  }
+]
