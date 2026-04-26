@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Antronin\PswCompositionBundle\Tests\Validator\Constraints;
+namespace AntroninConsulting\PswCompositionBundle\Tests\Validator\Constraints;
 
-use Antronin\PswCompositionBundle\Validator\Constraints\MinRegex;
-use Antronin\PswCompositionBundle\Validator\Constraints\MinRegexValidator;
+use AntroninConsulting\PswCompositionBundle\Validator\Constraints\MinRegex;
+use AntroninConsulting\PswCompositionBundle\Validator\Constraints\MinRegexValidator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;

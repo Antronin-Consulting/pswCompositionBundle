@@ -8,11 +8,11 @@
 
 declare(strict_types=1);
 
-namespace Antronin\PswCompositionBundle\Validator\Constraints;
+namespace AntroninConsulting\PswCompositionBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraints\Compound;
 use Symfony\Component\Validator\Constraints as Assert;
-use Antronin\PswCompositionBundle\Validator\Constraints\MinRegex;
+use AntroninConsulting\PswCompositionBundle\Validator\Constraints\MinRegex;
 
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
 class PasswordComposition extends Compound

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Antronin\PswCompositionBundle\Tests\Validator\Constraints;
+namespace AntroninConsulting\PswCompositionBundle\Tests\Validator\Constraints;
 
-use Antronin\PswCompositionBundle\Validator\Constraints\MinRegex;
+use AntroninConsulting\PswCompositionBundle\Validator\Constraints\MinRegex;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Exception\MissingOptionsException;
 
@@ -36,7 +36,7 @@ class MinRegexTest extends TestCase
     public function testConstructorThrowsExceptionWhenPatternIsMissing(): void
     {
         $this->expectException(MissingOptionsException::class);
-        $this->expectExceptionMessage('The options "pattern" must be set for constraint "Antronin\PswCompositionBundle\Validator\Constraints\MinRegex".');
+        $this->expectExceptionMessage('The options "pattern" must be set for constraint "AntroninConsulting\PswCompositionBundle\Validator\Constraints\MinRegex".');
 
         new MinRegex(pattern: null);
     }

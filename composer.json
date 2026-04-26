@@ -17,13 +17,13 @@
     "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
-            "Antronin\\PswCompositionBundle\\": "src/"
+            "AntroninConsulting\\PswCompositionBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Antronin\\PswCompositionBundle\\Tests\\": "tests/",
-            "Antronin\\PswCompositionBundle\\Tests\\Application\\": "tests/Application"
+            "AntroninConsulting\\PswCompositionBundle\\Tests\\": "tests/",
+            "AntroninConsulting\\PswCompositionBundle\\Tests\\Application\\": "tests/Application"
         }
     },
     "authors": [

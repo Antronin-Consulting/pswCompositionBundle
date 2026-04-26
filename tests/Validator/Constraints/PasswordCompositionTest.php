@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Antronin\PswCompositionBundle\Tests\Validator\Constraints;
+namespace AntroninConsulting\PswCompositionBundle\Tests\Validator\Constraints;
 
-use Antronin\PswCompositionBundle\Validator\Constraints\MinRegex;
-use Antronin\PswCompositionBundle\Validator\Constraints\PasswordComposition;
+use AntroninConsulting\PswCompositionBundle\Validator\Constraints\MinRegex;
+use AntroninConsulting\PswCompositionBundle\Validator\Constraints\PasswordComposition;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraints as Assert;
 

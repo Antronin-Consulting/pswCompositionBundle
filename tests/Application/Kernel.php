@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Antronin\PswCompositionBundle\Tests\Application;
+namespace AntroninConsulting\PswCompositionBundle\Tests\Application;
 
-use Antronin\PswCompositionBundle\AntroninConsultingPswCompositionBundle;
+use AntroninConsulting\PswCompositionBundle\PswCompositionBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -20,7 +20,7 @@ class Kernel extends BaseKernel
     {
         return [
             new FrameworkBundle(),
-            new AntroninConsultingPswCompositionBundle(),
+            new PswCompositionBundle(),
         ];
     }
 

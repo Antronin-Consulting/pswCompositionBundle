@@ -7,7 +7,7 @@ declare(strict_types=1);
  * -----
  */
 
-namespace Antronin\PswCompositionBundle\Validator\Constraints;
+namespace AntroninConsulting\PswCompositionBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Exception\MissingOptionsException;

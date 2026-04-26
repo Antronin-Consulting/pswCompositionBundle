@@ -15,11 +15,11 @@
         <ini name="error_reporting" value="-1" />
         <server name="APP_ENV" value="test" force="true" />
         <server name="SHELL_VERBOSITY" value="-1" />
-        <env name="KERNEL_CLASS" value="Antronin\PswCompositionBundle\Tests\Application\Kernel" />
+        <env name="KERNEL_CLASS" value="AntroninConsulting\PswCompositionBundle\Tests\Application\Kernel" />
     </php>
 
     <testsuites>
-        <testsuite name="Password Composition Test Case">
+        <testsuite name="Password Composition Test Cases">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

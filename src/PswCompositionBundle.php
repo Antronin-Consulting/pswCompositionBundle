@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace Antronin\PswCompositionBundle;
+namespace AntroninConsulting\PswCompositionBundle;
 
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -24,7 +24,7 @@ class PswCompositionBundle extends AbstractBundle
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $container->import('../config/services.yaml');
-        $validatorServiceId = 'antronin_psw_composition.validator.constraints.psw_composition';
+        $validatorServiceId = 'antronin_consulting_psw_composition.validator.constraints.psw_composition';
 
         if ($builder->hasDefinition($validatorServiceId)) {
             $definition = $builder->getDefinition($validatorServiceId);
