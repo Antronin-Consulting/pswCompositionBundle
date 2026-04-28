@@ -58,5 +58,10 @@
             "symfony/flex": true,
             "symfony/runtime": true
         }
+    },
+    "extra": {
+        "symfony": {
+            "recipe": "recipes/"
+        }
     }
 }
