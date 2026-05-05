@@ -23,28 +23,32 @@ class PswCompositionBundle extends AbstractBundle
      */
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        $container->import('../config/services.yaml');
+        $container->import(resource: '../config/services.yaml');
         $validatorServiceId = 'antronin_consulting_psw_composition.validator.constraints.psw_composition';
 
-        if ($builder->hasDefinition($validatorServiceId)) {
-            $definition = $builder->getDefinition($validatorServiceId);
+        if ($builder->hasDefinition(id: $validatorServiceId)) {
+            $definition = $builder->getDefinition(id: $validatorServiceId);
 
-            $definition->setArgument('$lengthEnabled', $config['length']['enabled']);
-            $definition->setArgument('$minLength', $config['length']['min']);
-            $definition->setArgument('$maxLength', $config['length']['max']);
-            $definition->setArgument('$minUppercase', $config['contents']['uppercase']['min']);
-            $definition->setArgument('$uppercaseEnabled', $config['contents']['uppercase']['enabled']);
-            $definition->setArgument('$minLowercase', $config['contents']['lowercase']['min']);
-            $definition->setArgument('$lowercaseEnabled', $config['contents']['lowercase']['enabled']);
-            $definition->setArgument('$minNumber', $config['contents']['number']['min']);
-            $definition->setArgument('$numberEnabled', $config['contents']['number']['enabled']);
-            $definition->setArgument('$minSpecial', $config['contents']['special']['min']);
-            $definition->setArgument('$specialEnabled', $config['contents']['special']['enabled']);
+            $definition->setArgument(key: '$lengthEnabled', value: $config['length']['enabled']);
+            $definition->setArgument(key: '$minLength', value: $config['length']['min']);
+            $definition->setArgument(key: '$maxLength', value: $config['length']['max']);
+            $definition->setArgument(key: '$minUppercase', value: $config['contents']['uppercase']['min']);
+            $definition->setArgument(key: '$uppercaseEnabled', value: $config['contents']['uppercase']['enabled']);
+            $definition->setArgument(key: '$uppercasePattern', value: $config['contents']['uppercase']['pattern']);
+            $definition->setArgument(key: '$minLowercase', value: $config['contents']['lowercase']['min']);
+            $definition->setArgument(key: '$lowercaseEnabled', value: $config['contents']['lowercase']['enabled']);
+            $definition->setArgument(key: '$lowercasePattern', value: $config['contents']['lowercase']['pattern']);
+            $definition->setArgument(key: '$minNumber', value: $config['contents']['number']['min']);
+            $definition->setArgument(key: '$numberEnabled', value: $config['contents']['number']['enabled']);
+            $definition->setArgument(key: '$numberPattern', value: $config['contents']['number']['pattern']);
+            $definition->setArgument(key: '$minSpecial', value: $config['contents']['special']['min']);
+            $definition->setArgument(key: '$specialEnabled', value: $config['contents']['special']['enabled']);
+            $definition->setArgument(key: '$specialPattern', value: $config['contents']['special']['pattern']);
         }
     }
 
     public function configure(DefinitionConfigurator $definition): void
     {
-        $definition->import('Config/definition.php');
+        $definition->import(resource: 'Config/definition.php');
     }
 }
