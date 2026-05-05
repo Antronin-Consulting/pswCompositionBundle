@@ -21,26 +21,26 @@ class MinRegexValidatorTest extends ConstraintValidatorTestCase
 
     public function testNullIsValid(): void
     {
-        $this->validator->validate(null, new MinRegex(pattern: '/foo/'));
+        $this->validator->validate(value: null, constraint: new MinRegex(pattern: '/foo/'));
         $this->assertNoViolation();
     }
 
     public function testEmptyStringIsValid(): void
     {
-        $this->validator->validate('', new MinRegex(pattern: '/foo/'));
+        $this->validator->validate(value: '', constraint: new MinRegex(pattern: '/foo/'));
         $this->assertNoViolation();
     }
 
     public function testExpectsStringCompatibleType(): void
     {
-        $this->expectException(UnexpectedValueException::class);
-        $this->validator->validate(new \stdClass(), new MinRegex(pattern: '/foo/'));
+        $this->expectException(exception: UnexpectedValueException::class);
+        $this->validator->validate(value: new \stdClass(), constraint: new MinRegex(pattern: '/foo/'));
     }
 
     public function testInvalidConstraintThrowsException(): void
     {
-        $this->expectException(UnexpectedTypeException::class);
-        $this->validator->validate('foo', new class() extends Constraint {});
+        $this->expectException(exception: UnexpectedTypeException::class);
+        $this->validator->validate(value: 'foo', constraint: new class() extends Constraint {});
     }
 
     public static function getValidValues(): iterable
@@ -49,14 +49,14 @@ class MinRegexValidatorTest extends ConstraintValidatorTestCase
         yield ['aa', '/a/', 2];
         yield ['abc', '/[a-z]/', 3];
         yield ['de', '/[a-z]/', 2];
-        yield [new StringableValue('a'), '/a/', 1];
+        yield [new StringableValue(value: 'a'), '/a/', 1];
     }
 
-    #[DataProvider('getValidValues')]
+    #[DataProvider(methodName: 'getValidValues')]
     public function testValidValues(mixed $value, string $pattern, int $min): void
     {
         $constraint = new MinRegex(pattern: $pattern, min: $min);
-        $this->validator->validate($value, $constraint);
+        $this->validator->validate(value: $value, constraint: $constraint);
 
         $this->assertNoViolation();
     }
@@ -67,10 +67,10 @@ class MinRegexValidatorTest extends ConstraintValidatorTestCase
         yield ['b', 'my-message', '/c/', 1];
         yield ['abc', 'my-message', '/d/', 1];
         yield ['foobar', 'my-message', '/f/', 2];
-        yield [new StringableValue('a'), 'my-message', '/b/', 5];
+        yield [new StringableValue(value: 'a'), 'my-message', '/b/', 5];
     }
 
-    #[DataProvider('getInvalidValues')]
+    #[DataProvider(methodName: 'getInvalidValues')]
     public function testInvalidValues(mixed $value, string $message, string $pattern, int $min): void
     {
         $constraint = new MinRegex(
@@ -79,13 +79,13 @@ class MinRegexValidatorTest extends ConstraintValidatorTestCase
             min: $min
         );
 
-        $this->validator->validate($value, $constraint);
+        $this->validator->validate(value: $value, constraint: $constraint);
 
-        $this->buildViolation($message)
-            ->setParameter('{{ value }}', '"' . (string) $value . '"')
-            ->setParameter('{{ pattern }}', $pattern)
-            ->setParameter('{{ min }}', (string) $min)
-            ->setCode(MinRegex::MIN_REGEX_FAILED_ERROR)
+        $this->buildViolation(message: $message)
+            ->setParameter(key: '{{ value }}', value: '"' . (string) $value . '"')
+            ->setParameter(key: '{{ pattern }}', value: $pattern)
+            ->setParameter(key: '{{ min }}', value: (string) $min)
+            ->setCode(code: MinRegex::MIN_REGEX_FAILED_ERROR)
             ->assertRaised();
     }
 
@@ -97,7 +97,7 @@ class MinRegexValidatorTest extends ConstraintValidatorTestCase
             normalizer: 'trim'
         );
 
-        $this->validator->validate(' foo ', $constraint);
+        $this->validator->validate(value: ' foo ', constraint: $constraint);
 
         $this->assertNoViolation();
     }
@@ -111,13 +111,13 @@ class MinRegexValidatorTest extends ConstraintValidatorTestCase
             min: 1
         );
 
-        $this->validator->validate(' bar ', $constraint);
+        $this->validator->validate(value: ' bar ', constraint: $constraint);
 
-        $this->buildViolation('my-message')
-            ->setParameter('{{ value }}', '"bar"')
-            ->setParameter('{{ pattern }}', '/f/')
-            ->setParameter('{{ min }}', '1')
-            ->setCode(MinRegex::MIN_REGEX_FAILED_ERROR)
+        $this->buildViolation(message: 'my-message')
+            ->setParameter(key: '{{ value }}', value: '"bar"')
+            ->setParameter(key: '{{ pattern }}', value: '/f/')
+            ->setParameter(key: '{{ min }}', value: '1')
+            ->setCode(code: MinRegex::MIN_REGEX_FAILED_ERROR)
             ->assertRaised();
     }
 }

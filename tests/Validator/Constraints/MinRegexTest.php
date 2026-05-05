@@ -23,20 +23,20 @@ class MinRegexTest extends TestCase
             payload: ['foo' => 'bar']
         );
 
-        self::assertSame('/foo/', $constraint->pattern);
-        self::assertSame('my-message', $constraint->message);
-        self::assertSame(5, $constraint->min);
-        self::assertSame('foo', $constraint->htmlPattern);
-        self::assertFalse($constraint->match);
-        self::assertSame('trim', $constraint->normalizer);
-        self::assertSame(['my_group'], $constraint->groups);
-        self::assertSame(['foo' => 'bar'], $constraint->payload);
+        self::assertSame(expected: '/foo/', actual: $constraint->pattern);
+        self::assertSame(expected: 'my-message', actual: $constraint->message);
+        self::assertSame(expected: 5, actual: $constraint->min);
+        self::assertSame(expected: 'foo', actual: $constraint->htmlPattern);
+        self::assertFalse(condition: $constraint->match);
+        self::assertSame(expected: 'trim', actual: $constraint->normalizer);
+        self::assertSame(expected: ['my_group'], actual: $constraint->groups);
+        self::assertSame(expected: ['foo' => 'bar'], actual: $constraint->payload);
     }
 
     public function testConstructorThrowsExceptionWhenPatternIsMissing(): void
     {
-        $this->expectException(MissingOptionsException::class);
-        $this->expectExceptionMessage('The options "pattern" must be set for constraint "AntroninConsulting\PswCompositionBundle\Validator\Constraints\MinRegex".');
+        $this->expectException(exception: MissingOptionsException::class);
+        $this->expectExceptionMessage(message: 'The options "pattern" must be set for constraint "AntroninConsulting\PswCompositionBundle\Validator\Constraints\MinRegex".');
 
         new MinRegex(pattern: null);
     }
@@ -45,6 +45,6 @@ class MinRegexTest extends TestCase
     {
         $constraint = new MinRegex(pattern: '/foo/', min: null);
 
-        self::assertSame(0, $constraint->min);
+        self::assertSame(expected: 0, actual: $constraint->min);
     }
 }

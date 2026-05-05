@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Exception\MissingOptionsException;
  *
  * @author Peter Nagy <peter@antronin.consulting>
  */
-#[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
+#[\Attribute(flags: \Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
 class MinRegex extends Regex
 {
     public const MIN_REGEX_FAILED_ERROR = '6cdafa98-0d64-477a-aaa9-e281d6db07fc';
@@ -37,7 +37,7 @@ class MinRegex extends Regex
         mixed $payload = null,
     ) {
         if (null === $pattern) {
-            throw new MissingOptionsException(\sprintf('The options "pattern" must be set for constraint "%s".', self::class), ['pattern']);
+            throw new MissingOptionsException(message: \sprintf(format: 'The options "pattern" must be set for constraint "%s".', values: self::class), options: ['pattern']);
         }
         $this->min = $min ?? 0;
         parent::__construct(

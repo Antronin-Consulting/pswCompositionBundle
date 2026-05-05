@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints\Compound;
 use Symfony\Component\Validator\Constraints as Assert;
 use AntroninConsulting\PswCompositionBundle\Validator\Constraints\MinRegex;
 
-#[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
+#[\Attribute(flags: \Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
 class PasswordComposition extends Compound
 {
     public function __construct(
@@ -41,7 +41,7 @@ class PasswordComposition extends Compound
     {
         $constraints = [
             new Assert\NotBlank(),
-            new Assert\Type('string'),
+            new Assert\Type(type: 'string'),
             new Assert\NotCompromisedPassword(),
         ];
 

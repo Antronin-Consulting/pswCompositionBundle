@@ -20,15 +20,15 @@ class MinRegexValidator extends RegexValidator
     public function validate(mixed $value, Constraint $constraint): void
     {
         if (!$constraint instanceof MinRegex) {
-            throw new UnexpectedTypeException($constraint, MinRegex::class);
+            throw new UnexpectedTypeException(value: $constraint, expectedType: MinRegex::class);
         }
 
         if (null === $value || '' === $value) {
             return;
         }
 
-        if (!\is_scalar($value) && !$value instanceof \Stringable) {
-            throw new UnexpectedValueException($value, 'string');
+        if (!\is_scalar(value: $value) && !$value instanceof \Stringable) {
+            throw new UnexpectedValueException(value: $value, expectedType: 'string');
         }
 
         $value = (string) $value;
@@ -37,12 +37,12 @@ class MinRegexValidator extends RegexValidator
             $value = ($constraint->normalizer)($value);
         }
 
-        if (preg_match_all($constraint->pattern, $value) < $constraint->min) {
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ value }}', $this->formatValue($value))
-                ->setParameter('{{ pattern }}', $constraint->pattern)
-                ->setParameter('{{ min }}', (string) $constraint->min)
-                ->setCode(MinRegex::MIN_REGEX_FAILED_ERROR)
+        if (preg_match_all(pattern: $constraint->pattern, subject: $value) < $constraint->min) {
+            $this->context->buildViolation(message: $constraint->message)
+                ->setParameter(key: '{{ value }}', value: $this->formatValue(value: $value))
+                ->setParameter(key: '{{ pattern }}', value: $constraint->pattern)
+                ->setParameter(key: '{{ min }}', value: (string) $constraint->min)
+                ->setCode(code: MinRegex::MIN_REGEX_FAILED_ERROR)
                 ->addViolation();
         }
     }
