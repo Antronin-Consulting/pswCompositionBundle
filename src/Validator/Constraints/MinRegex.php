@@ -37,7 +37,7 @@ class MinRegex extends Regex
         mixed $payload = null,
     ) {
         if (null === $pattern) {
-            throw new MissingOptionsException(message: \sprintf(format: 'The options "pattern" must be set for constraint "%s".', values: self::class), options: ['pattern']);
+            throw new MissingOptionsException(message: \sprintf('The options "pattern" must be set for constraint "%s".', self::class),  options: ['pattern']);
         }
         $this->min = $min ?? 0;
         parent::__construct(
