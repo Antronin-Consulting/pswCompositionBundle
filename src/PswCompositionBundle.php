@@ -27,6 +27,7 @@ class PswCompositionBundle extends AbstractBundle
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $container->import(resource: '../config/services.yaml');
+        $builder->setParameter(name: 'psw_composition', value: $config);
         $validatorServiceId = 'antronin_consulting_psw_composition.validator.constraints.psw_composition';
 
         if ($builder->hasDefinition(id: $validatorServiceId)) {
