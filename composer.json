@@ -64,7 +64,13 @@
             "endpoint": [
                 "https://api.github.com/repos/Antronin-Consulting/symfony-recipes/contents/index.json",
                 "flex://defaults"
-            ]
+            ],
+            "allow-contrib": true,
+            "stimulus": {
+                "controllers": {
+                    "AntroninConsulting\\PswCompositionBundle": "assets/controllers"
+                }
+            }
         }
     }
 }
